@@ -1,0 +1,17 @@
+@import '../settings/functions';
+@import '../settings/variables';
+
+/*-----------button-------------------------------------------------------------------------------------------*/
+
+.button {
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-transform: uppercase;
+    color: $white;
+    font-size: rem(14);
+    font-weight: 700;
+    line-height: 1;
+    letter-spacing: rem(1.5);
+}

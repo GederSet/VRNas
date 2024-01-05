@@ -1,0 +1,12 @@
+@import '../settings/functions';
+@import '../settings/variables';
+
+/*-----------title------------------------------------------------------------------------------------*/
+
+.title {
+    color: $white;
+    font-size: rem($titleFontSize);
+    font-weight: 600;
+    line-height: 120.833%;
+    letter-spacing: rem(-0.24);
+}

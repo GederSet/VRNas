@@ -1,0 +1,100 @@
+@import '../settings/functions';
+@import '../settings/variables';
+
+/*-----------anim-items---------------------------------------------------------------------------------------*/
+
+._anim-items {
+    transition: opacity 0.8s ease 0s, transform 0.8s ease 0s;
+}
+
+// sides
+
+._anim-items._active ._anim-items-right {
+    opacity: 1;
+    transform: translateX(0);
+}
+
+._anim-items-right {
+    opacity: 0;
+    transform: translateX(rem(80));
+}
+
+._anim-items-right._active {
+    opacity: 1;
+    transform: translateX(0);
+}
+
+._anim-items._active ._anim-items-bottom {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+._anim-items-bottom {
+    opacity: 0;
+    transform: translateY(rem(50));
+}
+
+._anim-items-bottom._active {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+._anim-items._active ._anim-items-left {
+    opacity: 1;
+    transform: translateX(0);
+}
+
+._anim-items-left {
+    opacity: 0;
+    transform: translateX(rem(-30));
+}
+
+._anim-items-left._active {
+    opacity: 1;
+    transform: translateX(0);
+}
+
+// scale
+
+._anim-items._active ._anim-items-scale-b {
+    opacity: 1;
+    transform: scale(1);
+}
+
+._anim-items-scale-b {
+    opacity: 0;
+    transform: scale(0);
+}
+
+._anim-items-scale-b._active {
+    opacity: 1;
+    transform: scale(1);
+}
+
+._anim-items._active ._anim-items-scale-m {
+    opacity: 1;
+    transform: scale(1);
+}
+
+._anim-items-scale-m {
+    opacity: 0;
+    transform: scale(1.2);
+}
+
+._anim-items-scale-m._active {
+    opacity: 1;
+    transform: scale(1);
+}
+
+// repeat
+
+._anim-items-right,
+._anim-items-bottom,
+._anim-items-left {
+    transition: opacity 0.8s ease 0s, transform 0.8s ease 0s;
+}
+
+._anim-items-scale-m,
+._anim-items-scale-b {
+    transition: opacity 0.8s ease 0s, transform 0.8s ease 0s;
+}

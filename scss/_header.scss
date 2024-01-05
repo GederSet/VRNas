@@ -1,0 +1,282 @@
+@import 'settings/functions';
+@import 'settings/variables';
+@import 'settings/mixins';
+
+/*-----------header-------------------------------------------------------------------------------------------*/
+.header._hide .header__container {
+    padding-top: rem(15);
+    padding-bottom: rem(15);
+}
+
+.header::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    opacity: 0;
+    background-color: rgba(37, 37, 50, .8);
+    backdrop-filter: blur(10px);
+    transition: all .5s ease 0s;
+}
+
+.header._hide::before {
+    opacity: 1;
+}
+
+.header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 100;
+    transition: all 0.3s ease 0s;
+    // .header__container
+
+    &__container {
+        padding-top: rem(31);
+        padding-bottom: rem(31);
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        flex-wrap: wrap;
+        gap: rem(10);
+        transition: padding 0.3s ease 0s;
+    }
+
+    // .header__logo
+
+    &__logo {
+        position: relative;
+        z-index: 10;
+        cursor: pointer;
+        flex: 0 0 auto;
+    }
+
+    // .header__menu
+
+    &__menu {}
+
+    &__menu::before {
+        content: '';
+        position: fixed;
+        top: 0;
+        left: 100%;
+        width: 100%;
+        height: rem(92);
+        z-index: 2;
+        background-color: $black100;
+        transition: left 0.3s ease 0s;
+    }
+
+    &._active &__menu::before {
+        left: 0;
+    }
+
+    // .header__button
+
+    &__button {
+        text-transform: none;
+        flex: 0 0 max-content;
+        padding: rem(12) rem(24);
+        font-size: rem(14);
+        font-weight: 300;
+        line-height: 175%;
+        font-size: rem(16);
+        @include gradientBlockBorderHover(1, 0, 0.4s, $blueLight, $purpleLight, transparent, transparent, $blueLight, $purpleLight, $blueLight, $purpleLight);
+    }
+}
+
+.menu {
+
+    // .menu__list
+
+    &__list {
+        display: flex;
+        @include adaptiveValue('column-gap', 64, 5);
+        flex-wrap: wrap;
+    }
+
+    // .menu__item
+
+    &__item {
+        position: relative;
+    }
+
+    // .menu__link
+
+    &__link {
+        cursor: pointer;
+        line-height: 175%;
+        transition: color 0.3s ease 0s;
+    }
+
+    &__link:hover {
+        color: $white;
+    }
+
+    &__list._spoller-init &__link[data-spoller] {
+        display: flex;
+        flex-direction: row-reverse;
+        align-items: center;
+        gap: rem(4);
+    }
+
+    &__list._spoller-init &__link[data-spoller]::before {
+        font-size: rem(6);
+        transition: transform 0.3s ease 0s;
+    }
+
+    &__list._spoller-init &__link[data-spoller]._spoller-active::before {
+        transform: rotate(180deg);
+    }
+
+    // .menu__content
+
+    &__list._spoller-init &__content {
+        position: absolute;
+        min-width: rem(170);
+        padding: rem(15);
+        background:
+            linear-gradient($black50, $black50) 50% 50%/calc(100% - rem(2)) calc(100% - rem(2)) no-repeat,
+            linear-gradient(90deg, rgba(255, 255, 255, .3) 0, transparent 100%);
+
+        a {
+            cursor: pointer;
+            display: block;
+            transition: 0.3s ease 0s;
+        }
+
+        a:hover {
+            color: $white;
+        }
+
+        a:not(:last-child) {
+            margin-bottom: rem(10);
+        }
+    }
+}
+
+.menu-burger {
+    display: none;
+}
+
+@media(max-width:em(700)) {
+
+    .header {
+        &__button {
+            display: none;
+        }
+    }
+
+    .menu {
+        position: fixed;
+        top: 0;
+        left: 100%;
+        width: 100%;
+        height: 100%;
+        overflow: auto;
+        background-color: $black100;
+        transition: left 0.3s ease 0s;
+
+        //.menu__list
+        &__list {
+            flex-direction: column;
+            gap: rem(30) 0;
+            overflow: hidden;
+            padding: rem(100) rem(20) rem(40) rem(20);
+        }
+
+        //.menu__item
+        &__item {}
+
+        //.menu__link
+        &__link {
+            font-size: rem(30);
+        }
+
+        &__list._spoller-init &__link[data-spoller] {
+            justify-content: space-between;
+        }
+
+        &__list._spoller-init &__link[data-spoller]::before {
+            font-size: rem(15);
+        }
+
+        &__list._spoller-init &__content {
+            position: relative;
+            padding: rem(20);
+
+            a {
+                font-size: rem(25);
+            }
+
+            a:not(:last-child) {
+                margin-bottom: rem(20);
+            }
+        }
+    }
+
+    .menu._active {
+        left: 0%;
+    }
+
+    .menu-burger {
+        cursor: pointer;
+        position: relative;
+        flex: 0 0 rem(45);
+        display: flex;
+        flex-direction: column;
+        align-items: flex-end;
+        justify-content: center;
+        row-gap: rem(4);
+        padding: rem(10);
+        height: rem(45);
+
+        // .menu-burger__line
+        &__line {
+            position: relative;
+            height: rem(2);
+            background-color: $white;
+            transition: all 0.3s ease 0s;
+        }
+
+        // .menu-burger__line
+        &__line:nth-child(1) {
+            top: 0;
+            width: rem(20);
+        }
+
+        // .menu-burger__line
+        &__line:nth-child(2) {
+            width: rem(14);
+        }
+
+        // .menu-burger__line
+        &__line:nth-child(3) {
+            bottom: 0;
+            width: rem(9);
+        }
+
+        // .menu-burger._active .menu-burger__line
+        &._active &__line:nth-child(1) {
+            top: rem(5);
+            width: rem(25);
+            transform: rotate(-45deg);
+        }
+
+        // .menu-burger._active .menu-burger__line
+        &._active &__line:nth-child(2) {
+            width: 0;
+        }
+
+        // .menu-burger._active .menu-burger__line
+        &._active &__line:nth-child(3) {
+            bottom: rem(6);
+            width: rem(25);
+            transform: rotate(45deg);
+        }
+    }
+
+}
